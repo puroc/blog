@@ -96,14 +96,18 @@
 
 
 
-  <meta property="og:type" content="article">
+  <meta name="description" content="全文目录 1、数据库管理1.1、创建数据库语法文档连接 例子：1CREATE DATABASE lusiadas; 1234CREATE DATABASE music2    LC_COLLATE &amp;apos;sv_SE.iso885915&amp;apos; LC_CTYPE &amp;apos;sv_SE.iso885915&amp;apos;    ENCODING LATIN9    TEMPLATE templ">
+<meta name="keywords" content="数据库">
+<meta property="og:type" content="article">
 <meta property="og:title" content="数据库知识点-DDL">
 <meta property="og:url" content="http://yoursite.com/2019/01/30/数据库知识点-DDL/index.html">
 <meta property="og:site_name" content="九阴真经">
+<meta property="og:description" content="全文目录 1、数据库管理1.1、创建数据库语法文档连接 例子：1CREATE DATABASE lusiadas; 1234CREATE DATABASE music2    LC_COLLATE &amp;apos;sv_SE.iso885915&amp;apos; LC_CTYPE &amp;apos;sv_SE.iso885915&amp;apos;    ENCODING LATIN9    TEMPLATE templ">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-30T07:22:46.480Z">
+<meta property="og:updated_time" content="2019-01-30T11:16:47.663Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库知识点-DDL">
+<meta name="twitter:description" content="全文目录 1、数据库管理1.1、创建数据库语法文档连接 例子：1CREATE DATABASE lusiadas; 1234CREATE DATABASE music2    LC_COLLATE &amp;apos;sv_SE.iso885915&amp;apos; LC_CTYPE &amp;apos;sv_SE.iso885915&amp;apos;    ENCODING LATIN9    TEMPLATE templ">
 
 
 
@@ -401,12 +405,34 @@
                 
               
 
-              <time title="创建时间：2019-01-30 15:22:46" itemprop="dateCreated datePublished" datetime="2019-01-30T15:22:46+08:00">2019-01-30</time>
+              <time title="创建时间：2019-01-30 15:22:46 / 修改时间：19:16:47" itemprop="dateCreated datePublished" datetime="2019-01-30T15:22:46+08:00">2019-01-30</time>
             
 
+            
+              
+
+              
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/blog/categories/数据库知识点/" itemprop="url" rel="index"><span itemprop="name">数据库知识点</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -436,7 +462,28 @@
       
 
       
-        
+        <p><a href="https://puroc.github.io/blog/2019/01/30/数据库知识点-目录/" target="_blank" rel="noopener">全文目录</a></p>
+<h2 id="1、数据库管理"><a href="#1、数据库管理" class="headerlink" title="1、数据库管理"></a>1、数据库管理</h2><h3 id="1-1、创建数据库"><a href="#1-1、创建数据库" class="headerlink" title="1.1、创建数据库"></a>1.1、创建数据库</h3><h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4><p><a href="http://www.postgres.cn/docs/10/sql-createtable.html" target="_blank" rel="noopener">文档连接</a></p>
+<h4 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATABASE lusiadas;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATABASE music2</span><br><span class="line">    LC_COLLATE &apos;sv_SE.iso885915&apos; LC_CTYPE &apos;sv_SE.iso885915&apos;</span><br><span class="line">    ENCODING LATIN9</span><br><span class="line">    TEMPLATE template0;</span><br></pre></td></tr></table></figure>
+<h3 id="1-2、修改数据库"><a href="#1-2、修改数据库" class="headerlink" title="1.2、修改数据库"></a>1.2、修改数据库</h3><h4 id="语法-1"><a href="#语法-1" class="headerlink" title="语法"></a>语法</h4><p><a href="http://www.postgres.cn/docs/10/sql-alterdatabase.html" target="_blank" rel="noopener">文档连接</a></p>
+<h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER DATABASE test SET enable_indexscan TO off;</span><br></pre></td></tr></table></figure>
+<h3 id="1-3、删除数据库"><a href="#1-3、删除数据库" class="headerlink" title="1.3、删除数据库"></a>1.3、删除数据库</h3><h4 id="语法-2"><a href="#语法-2" class="headerlink" title="语法"></a>语法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP DATABASE [ IF EXISTS ] name</span><br></pre></td></tr></table></figure>
+<h4 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h4><p>IF EXISTS：删除数据库时，如果数据库不存在，也不会抛出错误</p>
+<h4 id="例子-1"><a href="#例子-1" class="headerlink" title="例子"></a>例子</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP DATABASE IF EXISTS music2;</span><br></pre></td></tr></table></figure>
+<h2 id="2、表管理"><a href="#2、表管理" class="headerlink" title="2、表管理"></a>2、表管理</h2><h3 id="2-1、创建表"><a href="#2-1、创建表" class="headerlink" title="2.1、创建表"></a>2.1、创建表</h3><h4 id="语法-3"><a href="#语法-3" class="headerlink" title="语法"></a>语法</h4><p><a href="http://www.postgres.cn/docs/10/sql-createtable.html" target="_blank" rel="noopener">文档连接</a></p>
+<h4 id="例子-2"><a href="#例子-2" class="headerlink" title="例子"></a>例子</h4><p>为表films定义一个唯一表约束。唯一表约束能够被定义在表的一列或多列上：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE films (</span><br><span class="line">    code        char(5),</span><br><span class="line">    title       varchar(40),</span><br><span class="line">    did         integer,</span><br><span class="line">    date_prod   date,</span><br><span class="line">    kind        varchar(10),</span><br><span class="line">    len         interval hour to minute,</span><br><span class="line">    CONSTRAINT production UNIQUE(date_prod)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h3 id="2-2、修改表"><a href="#2-2、修改表" class="headerlink" title="2.2、修改表"></a>2.2、修改表</h3><h4 id="语法-4"><a href="#语法-4" class="headerlink" title="语法"></a>语法</h4><p><a href="http://www.postgres.cn/docs/10/sql-altertable.html" target="_blank" rel="noopener">文档连接</a></p>
+<h4 id="例子-3"><a href="#例子-3" class="headerlink" title="例子"></a>例子</h4><p>要向一个表增加一个类型为varchar的列：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE distributors ADD COLUMN address varchar(30);</span><br></pre></td></tr></table></figure>
+<p>要从表中删除一列：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE distributors DROP COLUMN address RESTRICT;</span><br></pre></td></tr></table></figure>
+<p>要在一个操作中更改两个现有列的类型：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE distributors</span><br><span class="line">    ALTER COLUMN address TYPE varchar(80),</span><br><span class="line">    ALTER COLUMN name TYPE varchar(100);</span><br></pre></td></tr></table></figure>
+<h3 id="2-3、删除表"><a href="#2-3、删除表" class="headerlink" title="2.3、删除表"></a>2.3、删除表</h3><h4 id="语法-5"><a href="#语法-5" class="headerlink" title="语法"></a>语法</h4><p><a href="http://www.postgres.cn/docs/10/sql-droptable.html" target="_blank" rel="noopener">文档连接</a></p>
+<h4 id="例子-4"><a href="#例子-4" class="headerlink" title="例子"></a>例子</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP TABLE IF EXISTS films, distributors;</span><br></pre></td></tr></table></figure>
+<h2 id="3、数据类型"><a href="#3、数据类型" class="headerlink" title="3、数据类型"></a>3、数据类型</h2><h2 id="4、索引管理"><a href="#4、索引管理" class="headerlink" title="4、索引管理"></a>4、索引管理</h2><h3 id="4-1、创建索引"><a href="#4-1、创建索引" class="headerlink" title="4.1、创建索引"></a>4.1、创建索引</h3><h3 id="4-2、删除索引"><a href="#4-2、删除索引" class="headerlink" title="4.2、删除索引"></a>4.2、删除索引</h3>
       
     </div>
 
@@ -456,6 +503,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/数据库/" rel="tag"># 数据库</a>
+          
+        </div>
       
 
       
@@ -523,8 +576,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -613,6 +675,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、数据库管理"><span class="nav-number">1.</span> <span class="nav-text">1、数据库管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1、创建数据库"><span class="nav-number">1.1.</span> <span class="nav-text">1.1、创建数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#语法"><span class="nav-number">1.1.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例子："><span class="nav-number">1.1.2.</span> <span class="nav-text">例子：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2、修改数据库"><span class="nav-number">1.2.</span> <span class="nav-text">1.2、修改数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#语法-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例子"><span class="nav-number">1.2.2.</span> <span class="nav-text">例子</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3、删除数据库"><span class="nav-number">1.3.</span> <span class="nav-text">1.3、删除数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#语法-2"><span class="nav-number">1.3.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参数说明"><span class="nav-number">1.3.2.</span> <span class="nav-text">参数说明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例子-1"><span class="nav-number">1.3.3.</span> <span class="nav-text">例子</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、表管理"><span class="nav-number">2.</span> <span class="nav-text">2、表管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1、创建表"><span class="nav-number">2.1.</span> <span class="nav-text">2.1、创建表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#语法-3"><span class="nav-number">2.1.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例子-2"><span class="nav-number">2.1.2.</span> <span class="nav-text">例子</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2、修改表"><span class="nav-number">2.2.</span> <span class="nav-text">2.2、修改表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#语法-4"><span class="nav-number">2.2.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例子-3"><span class="nav-number">2.2.2.</span> <span class="nav-text">例子</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3、删除表"><span class="nav-number">2.3.</span> <span class="nav-text">2.3、删除表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#语法-5"><span class="nav-number">2.3.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例子-4"><span class="nav-number">2.3.2.</span> <span class="nav-text">例子</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、数据类型"><span class="nav-number">3.</span> <span class="nav-text">3、数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、索引管理"><span class="nav-number">4.</span> <span class="nav-text">4、索引管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1、创建索引"><span class="nav-number">4.1.</span> <span class="nav-text">4.1、创建索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2、删除索引"><span class="nav-number">4.2.</span> <span class="nav-text">4.2、删除索引</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       

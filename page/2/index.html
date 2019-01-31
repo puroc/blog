@@ -420,7 +420,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-01-31 11:10:13" itemprop="dateModified" datetime="2019-01-31T11:10:13+08:00">2019-01-31</time>
+                <time title="修改时间：2019-01-31 11:57:51" itemprop="dateModified" datetime="2019-01-31T11:57:51+08:00">2019-01-31</time>
               
             
           </span>
@@ -456,7 +456,43 @@
       
         
           
-            
+            <p><a href="http://www.postgres.cn/docs/10/dml.html" target="_blank" rel="noopener">文档链接</a></p>
+<h2 id="1、插入数据"><a href="#1、插入数据" class="headerlink" title="1、插入数据"></a>1、插入数据</h2><p>向如下产品表插入数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE products (</span><br><span class="line">    product_no integer,</span><br><span class="line">    name text,</span><br><span class="line">    price numeric</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>插入一行数据，数据的值是按照这些列在表中出现的顺序列出的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO products VALUES (1, &apos;Cheese&apos;, 9.99);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>指定列的顺序进行插入</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO products (product_no, name, price) VALUES (1, &apos;Cheese&apos;, 9.99);</span><br><span class="line">INSERT INTO products (name, price, product_no) VALUES (&apos;Cheese&apos;, 9.99, 1);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>插入数据时使用缺省值</li>
+</ul>
+<p>以下第二种形式是PostgreSQL的一个扩展。它从使用给出的值从左开始填充列，有多少个给出的列值就填充多少个列，其他列的将使用缺省值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO products (product_no, name) VALUES (1, &apos;Cheese&apos;);</span><br><span class="line">INSERT INTO products VALUES (1, &apos;Cheese&apos;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>一次插入多行</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO products (product_no, name, price) VALUES</span><br><span class="line">    (1, &apos;Cheese&apos;, 9.99),</span><br><span class="line">    (2, &apos;Bread&apos;, 1.99),</span><br><span class="line">    (3, &apos;Milk&apos;, 2.99);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>也可以插入查询的结果（可能没有行、一行或多行）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO products (product_no, name, price)</span><br><span class="line">  SELECT product_no, name, price FROM new_products</span><br><span class="line">    WHERE release_date = &apos;today&apos;;</span><br></pre></td></tr></table></figure>
+<h2 id="2、更新数据"><a href="#2、更新数据" class="headerlink" title="2、更新数据"></a>2、更新数据</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UPDATE products SET price = 10 WHERE price = 5;</span><br></pre></td></tr></table></figure>
+<p>新的列值可以是任意标量表达式， 而不仅仅是常量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UPDATE products SET price = price * 1.10;</span><br></pre></td></tr></table></figure>
+<p>一次更新多列</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UPDATE mytable SET a = 5, b = 3, c = 1 WHERE a &gt; 0;</span><br></pre></td></tr></table></figure>
+<h2 id="3、删除数据"><a href="#3、删除数据" class="headerlink" title="3、删除数据"></a>3、删除数据</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM products WHERE price = 10;</span><br></pre></td></tr></table></figure>
+<h2 id="4、从修改的行中返回数据"><a href="#4、从修改的行中返回数据" class="headerlink" title="4、从修改的行中返回数据"></a>4、从修改的行中返回数据</h2><p> RETURNING可以返回分配给新行的ID</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE users (firstname text, lastname text, id serial primary key);</span><br><span class="line"></span><br><span class="line">INSERT INTO users (firstname, lastname) VALUES (&apos;Joe&apos;, &apos;Cool&apos;) RETURNING id;</span><br></pre></td></tr></table></figure>
+<p>在UPDATE中，可用于RETURNING的数据是被修改行的新内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UPDATE products SET price = price * 1.10</span><br><span class="line">  WHERE price &lt;= 99.99</span><br><span class="line">  RETURNING name, price AS new_price;</span><br></pre></td></tr></table></figure>
+<p>在DELETE中，可用于RETURNING的数据是删除行的内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM products</span><br><span class="line">  WHERE obsoletion_date = &apos;today&apos;</span><br><span class="line">  RETURNING *;</span><br></pre></td></tr></table></figure>
+
           
         
       
@@ -813,7 +849,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-01-31 11:10:31" itemprop="dateModified" datetime="2019-01-31T11:10:31+08:00">2019-01-31</time>
+                <time title="修改时间：2019-01-31 13:38:38" itemprop="dateModified" datetime="2019-01-31T13:38:38+08:00">2019-01-31</time>
               
             
           </span>
@@ -870,7 +906,7 @@
             <p>参考文献：<br><a href="http://www.postgres.cn/docs/10/index.html" target="_blank" rel="noopener">PostgreSQL10中文文档</a><br><a href="https://www.postgresql.org/docs/10/index.html" target="_blank" rel="noopener">PostgreSQL10官方文档</a><br><a href="http://www.w3school.com.cn/sql/index.asp" target="_blank" rel="noopener">SQL语法</a></p>
 <h3 id="1、DDL"><a href="#1、DDL" class="headerlink" title="1、DDL"></a><a href="https://puroc.github.io/blog/2019/01/30/数据库知识点-DDL/" target="_blank" rel="noopener">1、DDL</a></h3><h3 id="2、DML"><a href="#2、DML" class="headerlink" title="2、DML"></a>2、DML</h3><ul>
 <li><a href="">2.1 数据操纵</a></li>
-<li><a href="">2.2 数据查询</a></li>
+<li><a href="https://puroc.github.io/blog/2019/01/30/数据库知识点-DML-数据查询/" target="_blank" rel="noopener">2.2 数据查询</a></li>
 </ul>
 <h3 id="3、视图"><a href="#3、视图" class="headerlink" title="3、视图"></a><a href="">3、视图</a></h3><h3 id="4、索引"><a href="#4、索引" class="headerlink" title="4、索引"></a><a href="">4、索引</a></h3><h3 id="5、锁"><a href="#5、锁" class="headerlink" title="5、锁"></a><a href="">5、锁</a></h3><h3 id="6、事务"><a href="#6、事务" class="headerlink" title="6、事务"></a><a href="">6、事务</a></h3><h3 id="7、性能优化"><a href="#7、性能优化" class="headerlink" title="7、性能优化"></a>7、性能优化</h3><ul>
 <li><a href="">7.1 SQL优化</a></li>

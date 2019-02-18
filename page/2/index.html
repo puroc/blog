@@ -358,7 +358,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2019/01/30/数据库知识点-DML/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2019/02/18/camel知识点-目录/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="puroc">
@@ -378,7 +378,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/blog/2019/01/30/数据库知识点-DML/" class="post-title-link" itemprop="url">数据库知识点-DML-数据操纵</a>
+                <a href="/blog/2019/02/18/camel知识点-目录/" class="post-title-link" itemprop="url">camel知识点-目录</a>
               
             
           </h1>
@@ -403,214 +403,12 @@
                 
               
 
-              <time title="创建时间：2019-01-30 15:23:41" itemprop="dateCreated datePublished" datetime="2019-01-30T15:23:41+08:00">2019-01-30</time>
+              <time title="创建时间：2019-02-18 15:31:29 / 修改时间：15:36:59" itemprop="dateCreated datePublished" datetime="2019-02-18T15:31:29+08:00">2019-02-18</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-31 11:57:51" itemprop="dateModified" datetime="2019-01-31T11:57:51+08:00">2019-01-31</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="http://www.postgres.cn/docs/10/dml.html" target="_blank" rel="noopener">文档链接</a></p>
-<h2 id="1、插入数据"><a href="#1、插入数据" class="headerlink" title="1、插入数据"></a>1、插入数据</h2><p>向如下产品表插入数据</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE products (</span><br><span class="line">    product_no integer,</span><br><span class="line">    name text,</span><br><span class="line">    price numeric</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>插入一行数据，数据的值是按照这些列在表中出现的顺序列出的。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO products VALUES (1, &apos;Cheese&apos;, 9.99);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>指定列的顺序进行插入</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO products (product_no, name, price) VALUES (1, &apos;Cheese&apos;, 9.99);</span><br><span class="line">INSERT INTO products (name, price, product_no) VALUES (&apos;Cheese&apos;, 9.99, 1);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>插入数据时使用缺省值</li>
-</ul>
-<p>以下第二种形式是PostgreSQL的一个扩展。它从使用给出的值从左开始填充列，有多少个给出的列值就填充多少个列，其他列的将使用缺省值。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO products (product_no, name) VALUES (1, &apos;Cheese&apos;);</span><br><span class="line">INSERT INTO products VALUES (1, &apos;Cheese&apos;);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>一次插入多行</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO products (product_no, name, price) VALUES</span><br><span class="line">    (1, &apos;Cheese&apos;, 9.99),</span><br><span class="line">    (2, &apos;Bread&apos;, 1.99),</span><br><span class="line">    (3, &apos;Milk&apos;, 2.99);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>也可以插入查询的结果（可能没有行、一行或多行）</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO products (product_no, name, price)</span><br><span class="line">  SELECT product_no, name, price FROM new_products</span><br><span class="line">    WHERE release_date = &apos;today&apos;;</span><br></pre></td></tr></table></figure>
-<h2 id="2、更新数据"><a href="#2、更新数据" class="headerlink" title="2、更新数据"></a>2、更新数据</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UPDATE products SET price = 10 WHERE price = 5;</span><br></pre></td></tr></table></figure>
-<p>新的列值可以是任意标量表达式， 而不仅仅是常量。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UPDATE products SET price = price * 1.10;</span><br></pre></td></tr></table></figure>
-<p>一次更新多列</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UPDATE mytable SET a = 5, b = 3, c = 1 WHERE a &gt; 0;</span><br></pre></td></tr></table></figure>
-<h2 id="3、删除数据"><a href="#3、删除数据" class="headerlink" title="3、删除数据"></a>3、删除数据</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM products WHERE price = 10;</span><br></pre></td></tr></table></figure>
-<h2 id="4、从修改的行中返回数据"><a href="#4、从修改的行中返回数据" class="headerlink" title="4、从修改的行中返回数据"></a>4、从修改的行中返回数据</h2><p> RETURNING可以返回分配给新行的ID</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE users (firstname text, lastname text, id serial primary key);</span><br><span class="line"></span><br><span class="line">INSERT INTO users (firstname, lastname) VALUES (&apos;Joe&apos;, &apos;Cool&apos;) RETURNING id;</span><br></pre></td></tr></table></figure>
-<p>在UPDATE中，可用于RETURNING的数据是被修改行的新内容</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UPDATE products SET price = price * 1.10</span><br><span class="line">  WHERE price &lt;= 99.99</span><br><span class="line">  RETURNING name, price AS new_price;</span><br></pre></td></tr></table></figure>
-<p>在DELETE中，可用于RETURNING的数据是删除行的内容</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM products</span><br><span class="line">  WHERE obsoletion_date = &apos;today&apos;</span><br><span class="line">  RETURNING *;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2019/01/30/数据库知识点-DDL/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="puroc">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/uploads/puroc.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="九阴真经">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/blog/2019/01/30/数据库知识点-DDL/" class="post-title-link" itemprop="url">数据库知识点-DDL</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-30 15:22:46" itemprop="dateCreated datePublished" datetime="2019-01-30T15:22:46+08:00">2019-01-30</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-31 11:02:49" itemprop="dateModified" datetime="2019-01-31T11:02:49+08:00">2019-01-31</time>
               
             
           </span>
@@ -627,7 +425,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/blog/categories/数据库知识点/" itemprop="url" rel="index"><span itemprop="name">数据库知识点</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/blog/categories/camel知识点/" itemprop="url" rel="index"><span itemprop="name">camel知识点</span></a></span>
 
                 
                 
@@ -664,256 +462,17 @@
       
         
           
-            <p><a href="https://puroc.github.io/blog/2019/01/30/数据库知识点-目录/" target="_blank" rel="noopener">全文目录</a></p>
-<h2 id="1、数据库管理"><a href="#1、数据库管理" class="headerlink" title="1、数据库管理"></a>1、数据库管理</h2><h3 id="1-1、创建数据库"><a href="#1-1、创建数据库" class="headerlink" title="1.1、创建数据库"></a>1.1、创建数据库</h3><h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4><p><a href="http://www.postgres.cn/docs/10/sql-createtable.html" target="_blank" rel="noopener">文档连接</a></p>
-<h4 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATABASE lusiadas;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATABASE music2</span><br><span class="line">    LC_COLLATE &apos;sv_SE.iso885915&apos; LC_CTYPE &apos;sv_SE.iso885915&apos;</span><br><span class="line">    ENCODING LATIN9</span><br><span class="line">    TEMPLATE template0;</span><br></pre></td></tr></table></figure>
-<h3 id="1-2、修改数据库"><a href="#1-2、修改数据库" class="headerlink" title="1.2、修改数据库"></a>1.2、修改数据库</h3><h4 id="语法-1"><a href="#语法-1" class="headerlink" title="语法"></a>语法</h4><p><a href="http://www.postgres.cn/docs/10/sql-alterdatabase.html" target="_blank" rel="noopener">文档连接</a></p>
-<h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER DATABASE test SET enable_indexscan TO off;</span><br></pre></td></tr></table></figure>
-<h3 id="1-3、删除数据库"><a href="#1-3、删除数据库" class="headerlink" title="1.3、删除数据库"></a>1.3、删除数据库</h3><h4 id="语法-2"><a href="#语法-2" class="headerlink" title="语法"></a>语法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP DATABASE [ IF EXISTS ] name</span><br></pre></td></tr></table></figure>
-<h4 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h4><p>IF EXISTS：删除数据库时，如果数据库不存在，也不会抛出错误</p>
-<h4 id="例子-1"><a href="#例子-1" class="headerlink" title="例子"></a>例子</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP DATABASE IF EXISTS music2;</span><br></pre></td></tr></table></figure>
-<h2 id="2、表管理"><a href="#2、表管理" class="headerlink" title="2、表管理"></a>2、表管理</h2><h3 id="2-1、创建表"><a href="#2-1、创建表" class="headerlink" title="2.1、创建表"></a>2.1、创建表</h3><h4 id="语法-3"><a href="#语法-3" class="headerlink" title="语法"></a>语法</h4><p><a href="http://www.postgres.cn/docs/10/sql-createtable.html" target="_blank" rel="noopener">文档连接</a></p>
-<h4 id="例子-2"><a href="#例子-2" class="headerlink" title="例子"></a>例子</h4><p><a href="http://www.postgres.cn/docs/10/ddl.html" target="_blank" rel="noopener">文档连接</a></p>
-<h5 id="1、默认值"><a href="#1、默认值" class="headerlink" title="1、默认值"></a>1、默认值</h5><p>在一个表定义中，默认值被列在列的数据类型之后。例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE products (</span><br><span class="line">    product_no integer,</span><br><span class="line">    name text,</span><br><span class="line">    price numeric DEFAULT 9.99</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<p>默认值可以是一个表达式，它将在任何需要插入默认值的时候被实时计算（不是表创建时）。一个常见的例子是为一个timestamp列指定默认值为CURRENT_TIMESTAMP，这样它将得到行被插入时的时间。另一个常见的例子是为每一行生成一个“序列号” 。这在PostgreSQL可以按照如下方式实现：这里nextval()是函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE products (</span><br><span class="line">    product_no integer DEFAULT nextval(&apos;products_product_no_seq&apos;),</span><br><span class="line">    ...</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<h5 id="2、检查约束"><a href="#2、检查约束" class="headerlink" title="2、检查约束"></a>2、检查约束</h5><p>检查约束有列约束和表约束两种用法。列约束例子如下，如你所见，约束定义就和默认值定义一样跟在数据类型之后。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE products (</span><br><span class="line">    product_no integer,</span><br><span class="line">    name text,</span><br><span class="line">    price numeric CHECK (price &gt; 0)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<p>表约束例子如下，其中第三个约束使用了一种新语法。它并没有依附在一个特定的列，而是作为一个独立的项出现在逗号分隔的列表中，这就是表检查约束。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE products (</span><br><span class="line">    product_no integer,</span><br><span class="line">    name text,</span><br><span class="line">    price numeric CHECK (price &gt; 0),</span><br><span class="line">    discounted_price numeric CHECK (discounted_price &gt; 0),</span><br><span class="line">    CHECK (price &gt; discounted_price)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<h5 id="3、非空约束"><a href="#3、非空约束" class="headerlink" title="3、非空约束"></a>3、非空约束</h5><p>非空约束指定一个列中不会有空值</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE products (</span><br><span class="line">    product_no integer NOT NULL,</span><br><span class="line">    name text NOT NULL,</span><br><span class="line">    price numeric</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<p>一个列可以有多于一个的约束，只需要将这些约束一个接一个写出，约束的顺序没有关系。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE products (</span><br><span class="line">    product_no integer NOT NULL,</span><br><span class="line">    name text NOT NULL,</span><br><span class="line">    price numeric NOT NULL CHECK (price &gt; 0)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<h5 id="4、唯一约束"><a href="#4、唯一约束" class="headerlink" title="4、唯一约束"></a>4、唯一约束</h5><p>唯一约束保证\在一列中或者一组列中保存的数据在表中所有行间是唯一的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE products (</span><br><span class="line">    product_no integer UNIQUE,</span><br><span class="line">    name text,</span><br><span class="line">    price numeric</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<p>要为一组列定义一个唯一约束，把它写作一个表级约束，列名用逗号分隔</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE example (</span><br><span class="line">    a integer,</span><br><span class="line">    b integer,</span><br><span class="line">    c integer,</span><br><span class="line">    UNIQUE (a, c)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<p><strong>注意：<br>1）如果表中有超过一行在约束所包括列上的值相同，将会违反唯一约束。但是在这种比较中，两个空值被认为是不同的。<br>2）增加一个唯一约束会在约束中列出的列或列组上自动创建一个唯一B-tree索引</strong></p>
-<h5 id="5、主键"><a href="#5、主键" class="headerlink" title="5、主键"></a>5、主键</h5><p>一个主键约束表示可以用作表中行的唯一标识符的一个列或者一组列。这要求那些值都是唯一的并且非空</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE products (</span><br><span class="line">    product_no integer PRIMARY KEY,</span><br><span class="line">    name text,</span><br><span class="line">    price numeric</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<p>主键也可以包含多于一个列</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE example (</span><br><span class="line">    a integer,</span><br><span class="line">    b integer,</span><br><span class="line">    c integer,</span><br><span class="line">    PRIMARY KEY (a, c)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<p><strong>注意：<br>1) 增加一个主键将自动在主键中列出的列或列组上创建一个唯一B-tree索引</strong></p>
-<h5 id="6、外键"><a href="#6、外键" class="headerlink" title="6、外键"></a>6、外键</h5><p>一个外键约束指定一列（或一组列）中的值必须匹配出现在另一个表中某些行的值。<br>例如我们有一个使用过多次的产品表：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE products (</span><br><span class="line">    product_no integer PRIMARY KEY,</span><br><span class="line">    name text,</span><br><span class="line">    price numeric</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<p>让我们假设我们还有一个存储这些产品订单的表。我们希望保证订单表中只包含真正存在的产品的订单。因此我们在订单表中定义一个引用产品表的外键约束，现在就不可能创建包含不存在于产品表中的product_no值（非空）的订单。在这种情况下，订单表是引用表而产品表是被引用表。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE orders (</span><br><span class="line">    order_id integer PRIMARY KEY,</span><br><span class="line">    product_no integer REFERENCES products (product_no),</span><br><span class="line">    quantity integer</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<p>一个外键也可以约束和引用一组列。照例，它需要被写成表约束的形式。当然被约束列的数量和类型应该匹配被引用列的数量和类型。下面是一个例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE t1 (</span><br><span class="line">  a integer PRIMARY KEY,</span><br><span class="line">  b integer,</span><br><span class="line">  c integer,</span><br><span class="line">  FOREIGN KEY (b, c) REFERENCES other_table (c1, c2)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<p>我们知道外键不允许创建与任何产品都不相关的订单。但如果一个产品在一个引用它的订单创建之后被移除会发生什么？SQL允许我们处理这种情况。直观上，我们有几种选项：</p>
+            <h3 id="1、camel使用篇"><a href="#1、camel使用篇" class="headerlink" title="1、camel使用篇"></a>1、camel使用篇</h3><p><a href="">* 1.1、camel使用篇-简单示例</a><br><a href="">* 1.2、camel使用篇-组件</a></p>
 <ul>
-<li><p>不允许删除一个被引用的产品</p>
-</li>
-<li><p>同时也删除引用产品的订单</p>
-</li>
-<li><p>其他？</p>
-</li>
-</ul>
-<p>为了说明这些，让我们在上面的多对多关系例子中实现下面的策略：当某人希望移除一个仍然被一个订单引用（通过order_items）的产品时 ，我们组织它。如果某人移除一个订单，订单项也同时被移除：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE products (</span><br><span class="line">    product_no integer PRIMARY KEY,</span><br><span class="line">    name text,</span><br><span class="line">    price numeric</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">CREATE TABLE orders (</span><br><span class="line">    order_id integer PRIMARY KEY,</span><br><span class="line">    shipping_address text,</span><br><span class="line">    ...</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">CREATE TABLE order_items (</span><br><span class="line">    product_no integer REFERENCES products ON DELETE RESTRICT,</span><br><span class="line">    order_id integer REFERENCES orders ON DELETE CASCADE,</span><br><span class="line">    quantity integer,</span><br><span class="line">    PRIMARY KEY (product_no, order_id)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<p>限制删除或者级联删除是两种最常见的选项。RESTRICT阻止删除一个被引用的行。NO ACTION表示在约束被检察时如果有任何引用行存在，则会抛出一个错误，这是我们没有指定任何东西时的默认行为（这两种选择的本质不同在于NO ACTION允许检查被推迟到事务的最后，而RESTRICT则不会）。CASCADE指定当一个被引用行被删除后，引用它的行也应该被自动删除。还有其他两种选项：SET NULL和SET DEFAULT。这些将导致在被引用行被删除后，引用行中的引用列被置为空值或它们的默认值。注意这些并不会是我们免于遵守任何约束。例如，如果一个动作指定了SET DEFAULT，但是默认值不满足外键约束，操作将会失败。</p>
-<p>与ON DELETE相似，同样有ON UPDATE可以用在一个被引用列被修改（更新）的情况，可选的动作相同。在这种情况下，CASCADE意味着被引用列的更新值应该被复制到引用行中。</p>
-<p>正常情况下，如果一个引用行的任意一个引用列都为空，则它不需要满足外键约束。如果在外键定义中加入了MATCH FULL，一个引用行只有在它的所有引用列为空时才不需要满足外键约束（因此空和非空值的混合肯定会导致MATCH FULL约束失败）。如果不希望引用行能够避开外键约束，将引用行声明为NOT NULL。</p>
-<p>一个外键所引用的列必须是一个主键或者被唯一约束所限制。这意味着被引用列总是拥有一个索引（位于主键或唯一约束之下的索引），因此在其上进行的一个引用行是否匹配的检查将会很高效。由于从被引用表中DELETE一行或者UPDATE一个被引用列将要求对引用表进行扫描以得到匹配旧值的行，在引用列上建立合适的索引也会大有益处。由于这种做法并不是必须的，而且创建索引也有很多种选择，所以外键约束的定义并不会自动在引用列上创建索引。</p>
-<h3 id="2-2、修改表"><a href="#2-2、修改表" class="headerlink" title="2.2、修改表"></a>2.2、修改表</h3><h4 id="语法-4"><a href="#语法-4" class="headerlink" title="语法"></a>语法</h4><p><a href="http://www.postgres.cn/docs/10/sql-altertable.html" target="_blank" rel="noopener">文档连接</a></p>
-<h4 id="例子-3"><a href="#例子-3" class="headerlink" title="例子"></a>例子</h4><p>要向一个表增加一个类型为varchar的列：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE distributors ADD COLUMN address varchar(30);</span><br></pre></td></tr></table></figure>
-<p>要从表中删除一列：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE distributors DROP COLUMN address RESTRICT;</span><br></pre></td></tr></table></figure>
-<p>要在一个操作中更改两个现有列的类型：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE distributors</span><br><span class="line">    ALTER COLUMN address TYPE varchar(80),</span><br><span class="line">    ALTER COLUMN name TYPE varchar(100);</span><br></pre></td></tr></table></figure>
-<h3 id="2-3、删除表"><a href="#2-3、删除表" class="headerlink" title="2.3、删除表"></a>2.3、删除表</h3><h4 id="语法-5"><a href="#语法-5" class="headerlink" title="语法"></a>语法</h4><p><a href="http://www.postgres.cn/docs/10/sql-droptable.html" target="_blank" rel="noopener">文档连接</a></p>
-<h4 id="例子-4"><a href="#例子-4" class="headerlink" title="例子"></a>例子</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP TABLE IF EXISTS films, distributors;</span><br></pre></td></tr></table></figure>
-<h2 id="3、数据类型"><a href="#3、数据类型" class="headerlink" title="3、数据类型"></a>3、数据类型</h2><p><a href="http://www.postgres.cn/docs/10/datatype.html" target="_blank" rel="noopener">文档连接</a></p>
-<h3 id="1、数字类型"><a href="#1、数字类型" class="headerlink" title="1、数字类型"></a>1、数字类型</h3><p><img src="https://puroc521blog.oss-cn-beijing.aliyuncs.com/20190131104815.png" alt=""></p>
-<h3 id="2、字符类型"><a href="#2、字符类型" class="headerlink" title="2、字符类型"></a>2、字符类型</h3><p><img src="https://puroc521blog.oss-cn-beijing.aliyuncs.com/20190131105254.png" alt=""></p>
-<h3 id="3、日期时间类型"><a href="#3、日期时间类型" class="headerlink" title="3、日期时间类型"></a>3、日期时间类型</h3><p><img src="https://puroc521blog.oss-cn-beijing.aliyuncs.com/20190131105903.png" alt=""></p>
-<h3 id="4、JSON类型"><a href="#4、JSON类型" class="headerlink" title="4、JSON类型"></a>4、JSON类型</h3><h3 id="5、数组类型"><a href="#5、数组类型" class="headerlink" title="5、数组类型"></a>5、数组类型</h3>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2019/01/30/数据库知识点-目录/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="puroc">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/blog/uploads/puroc.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="九阴真经">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/blog/2019/01/30/数据库知识点-目录/" class="post-title-link" itemprop="url">数据库知识点-目录</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-30 15:16:25" itemprop="dateCreated datePublished" datetime="2019-01-30T15:16:25+08:00">2019-01-30</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-31 13:43:29" itemprop="dateModified" datetime="2019-01-31T13:43:29+08:00">2019-01-31</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/blog/categories/数据库知识点/" itemprop="url" rel="index"><span itemprop="name">数据库知识点</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>参考文献：<br><a href="http://www.postgres.cn/docs/10/index.html" target="_blank" rel="noopener">PostgreSQL10中文文档</a><br><a href="https://www.postgresql.org/docs/10/index.html" target="_blank" rel="noopener">PostgreSQL10官方文档</a><br><a href="http://www.w3school.com.cn/sql/index.asp" target="_blank" rel="noopener">SQL语法</a></p>
-<h3 id="1、DDL"><a href="#1、DDL" class="headerlink" title="1、DDL"></a><a href="https://puroc.github.io/blog/2019/01/30/数据库知识点-DDL/" target="_blank" rel="noopener">1、DDL</a></h3><h3 id="2、DML"><a href="#2、DML" class="headerlink" title="2、DML"></a>2、DML</h3><ul>
-<li><a href="https://puroc.github.io/blog/2019/01/30/数据库知识点-DML/" target="_blank" rel="noopener">2.1 数据操纵</a></li>
-<li><a href="https://puroc.github.io/blog/2019/01/30/数据库知识点-DML-数据查询/" target="_blank" rel="noopener">2.2 数据查询</a></li>
-</ul>
-<h3 id="3、视图"><a href="#3、视图" class="headerlink" title="3、视图"></a><a href="https://puroc.github.io/blog/2019/01/30/数据库知识点-视图/" target="_blank" rel="noopener">3、视图</a></h3><h3 id="4、索引"><a href="#4、索引" class="headerlink" title="4、索引"></a><a href="https://puroc.github.io/blog/2019/01/30/数据库知识点-索引/" target="_blank" rel="noopener">4、索引</a></h3><h3 id="5、锁"><a href="#5、锁" class="headerlink" title="5、锁"></a><a href="https://puroc.github.io/blog/2019/01/30/数据库知识点-锁/" target="_blank" rel="noopener">5、锁</a></h3><h3 id="6、事务"><a href="#6、事务" class="headerlink" title="6、事务"></a><a href="https://puroc.github.io/blog/2019/01/30/数据库知识点-事务/" target="_blank" rel="noopener">6、事务</a></h3><h3 id="7、性能优化"><a href="#7、性能优化" class="headerlink" title="7、性能优化"></a>7、性能优化</h3><ul>
-<li><a href="https://puroc.github.io/blog/2019/01/30/数据库知识点-SQL优化/" target="_blank" rel="noopener">7.1 SQL优化</a></li>
-<li><a href="https://puroc.github.io/blog/2019/01/30/数据库知识点-分区/" target="_blank" rel="noopener">7.2 分区</a></li>
-<li><a href="https://puroc.github.io/blog/2019/01/30/数据库知识点-读写分离/" target="_blank" rel="noopener">7.3 读写分离</a></li>
-<li><a href="https://puroc.github.io/blog/2019/01/30/数据库知识点-分库分表/" target="_blank" rel="noopener">7.4 分库分表</a></li>
-<li><a href="https://puroc.github.io/blog/2019/01/30/数据库知识点-Greenplum/" target="_blank" rel="noopener">7.5 Greenplum</a></li>
+<li>1.3、camel使用篇-类型转换</li>
+<li>1.4、camel使用篇-表达式语言</li>
+<li>1.5、camel使用篇-自定义组件</li>
+<li>1.6、camel使用篇-错误处理</li>
+<li>1.7、camel使用篇-事务处理</li>
+<li>1.8、camel使用篇-并行处理</li>
+<li>1.9、camel使用篇-管理和监控<h3 id="2、camel分析篇"><a href="#2、camel分析篇" class="headerlink" title="2、camel分析篇"></a>2、camel分析篇</h3></li>
+<li>2.1、camel分析篇-路由初始化</li>
+<li>2.2、camel分析篇-路由的同步执行和异步执行</li>
 </ul>
 
           
@@ -971,7 +530,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2019/01/29/开篇语/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2019/01/30/数据库知识点-Greenplum/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="puroc">
@@ -991,7 +550,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/blog/2019/01/29/开篇语/" class="post-title-link" itemprop="url">开篇语</a>
+                <a href="/blog/2019/01/30/数据库知识点-Greenplum/" class="post-title-link" itemprop="url">数据库知识点-Greenplum</a>
               
             
           </h1>
@@ -1016,46 +575,16 @@
                 
               
 
-              <time title="创建时间：2019-01-29 18:58:37" itemprop="dateCreated datePublished" datetime="2019-01-29T18:58:37+08:00">2019-01-29</time>
+              <time title="创建时间：2019-01-30 15:27:43 / 修改时间：15:38:28" itemprop="dateCreated datePublished" datetime="2019-01-30T15:27:43+08:00">2019-01-30</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-30 09:57:49" itemprop="dateModified" datetime="2019-01-30T09:57:49+08:00">2019-01-30</time>
               
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/blog/categories/闲聊/" itemprop="url" rel="index"><span itemprop="name">闲聊</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -1087,8 +616,1111 @@
       
         
           
-            <p><img src="https://puroc521blog.oss-cn-beijing.aliyuncs.com/timg.jpeg" alt=""></p>
+            
+          
+        
+      
+    </div>
 
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2019/01/30/数据库知识点-分库分表/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="puroc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/uploads/puroc.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="九阴真经">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/blog/2019/01/30/数据库知识点-分库分表/" class="post-title-link" itemprop="url">数据库知识点-分库分表</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-30 15:27:37" itemprop="dateCreated datePublished" datetime="2019-01-30T15:27:37+08:00">2019-01-30</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2019/01/30/数据库知识点-读写分离/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="puroc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/uploads/puroc.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="九阴真经">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/blog/2019/01/30/数据库知识点-读写分离/" class="post-title-link" itemprop="url">数据库知识点-读写分离</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-30 15:27:31" itemprop="dateCreated datePublished" datetime="2019-01-30T15:27:31+08:00">2019-01-30</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2019/01/30/数据库知识点-分区/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="puroc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/uploads/puroc.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="九阴真经">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/blog/2019/01/30/数据库知识点-分区/" class="post-title-link" itemprop="url">数据库知识点-分区</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-30 15:27:26" itemprop="dateCreated datePublished" datetime="2019-01-30T15:27:26+08:00">2019-01-30</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2019/01/30/数据库知识点-SQL优化/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="puroc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/uploads/puroc.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="九阴真经">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/blog/2019/01/30/数据库知识点-SQL优化/" class="post-title-link" itemprop="url">数据库知识点-SQL优化</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-30 15:27:12" itemprop="dateCreated datePublished" datetime="2019-01-30T15:27:12+08:00">2019-01-30</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2019/01/30/数据库知识点-事务/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="puroc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/uploads/puroc.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="九阴真经">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/blog/2019/01/30/数据库知识点-事务/" class="post-title-link" itemprop="url">数据库知识点-事务</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-30 15:26:52" itemprop="dateCreated datePublished" datetime="2019-01-30T15:26:52+08:00">2019-01-30</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2019/01/30/数据库知识点-锁/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="puroc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/uploads/puroc.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="九阴真经">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/blog/2019/01/30/数据库知识点-锁/" class="post-title-link" itemprop="url">数据库知识点-锁</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-30 15:26:48" itemprop="dateCreated datePublished" datetime="2019-01-30T15:26:48+08:00">2019-01-30</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2019/01/30/数据库知识点-索引/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="puroc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/uploads/puroc.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="九阴真经">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/blog/2019/01/30/数据库知识点-索引/" class="post-title-link" itemprop="url">数据库知识点-索引</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-30 15:26:40" itemprop="dateCreated datePublished" datetime="2019-01-30T15:26:40+08:00">2019-01-30</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2019/01/30/数据库知识点-视图/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="puroc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/blog/uploads/puroc.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="九阴真经">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/blog/2019/01/30/数据库知识点-视图/" class="post-title-link" itemprop="url">数据库知识点-视图</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-30 15:26:34" itemprop="dateCreated datePublished" datetime="2019-01-30T15:26:34+08:00">2019-01-30</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
           
         
       
@@ -1133,7 +1765,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/blog/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/blog/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/blog/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/blog/">1</a><span class="page-number current">2</span><a class="page-number" href="/blog/page/3/">3</a><a class="extend next" rel="next" href="/blog/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1178,7 +1810,7 @@
                 
                   <a href="/blog/archives/">
                 
-                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-count">25</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1195,7 +1827,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">2</span>
+                      
+                    
+                    <span class="site-state-item-count">3</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
